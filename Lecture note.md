@@ -32,28 +32,35 @@ Big Data
   - 模型基於算法(例如 神經網路、決策樹)
   - 分析資料> 得到關係(模型)
   - 不重解釋與統計推論
-  
+
+**Also see:** 投影片表格!
 
 Causal Inference 因果關係
 - 在不做實驗的情況下得到超越統計推論的「原因-後果 的論述」
 
-### Variate
-- linear combination of variables with empirically determined weight
+Variate
+- a linear combination of variables with empirically determined weight
 - $Y = W_1X_1+W_2X_2+W_3X_3+...+W_nX_n$
   - e.g., $X_1=$ income; $X_2=$ education;...
 
+| $Y$   | $X_1$ | $X_2$ | ... | $X_n$ |
+| --- | ----- | ----- | --- | ----- |
+| ... | ...   | ...   | ... | ...   |
+| ... | ...   | ...   | ... | ...   |
+| ... | ...   | ...   | ... | ...   |
 
 ### Measurement scale
-- Non-metric scale
-  - nominal, categorical, qualitative 類別的
-  - ordinal, e.g., 10%-20%...; 前10%...
+- Non-metric (qualitative) scale
+  - nominal, categorical, i.e., 類別的；編號與順序或量化值無關。
+  - ordinal, e.g., 10%-20%...; 前10%...; 順序代表測量到的特徵強弱，但不能反映強多少/弱多少。例如：非常喜歡-喜歡-普通-討厭-非常討厭
   - 不可轉成metric scale
 - Metric scale
   - numerical, quantitative
-  - E.g. 
-    - Interval
-    - Ratio
+    - Interval：例如溫度，有序(數值能夠比較)、等距(10$^\circ$C-20$^\circ$C區間與20$^\circ$C-30$^\circ$C)
+    - Ratio # TODO: See this https://www.questionpro.com/blog/nominal-ordinal-interval-ratio/
   - 可轉成Non-metric scale
+
+![](fig/MeasurementScale_tree.png)
 
 ![](fig/TFtable.png)
 

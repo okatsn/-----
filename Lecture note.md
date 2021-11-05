@@ -8,26 +8,31 @@
 - 個別效應難以被有意義地分開詮釋
 - 工具主義：只要能夠預測，不管為什麼/原理。
 - 無法提供學理上的解釋
-- 幫助決策
+- 幫助決策、假說驗證
 
 
 
 Big Data
 - Volume (量大)
-- Variety (多樣性)、快速變動性 (velocity)、真實性 (veracity)...
-- 樣本越大，統計推論的需求就越少。
-- 直接處理母體，沒有統計推論的需求，就不用管例如confidence level那些。
+- Variety (多樣性)、高速 (velocity)、真實性 (veracity)、快速變動性(variability)、價值(value)
+- 樣本越大，統計推論的需求就越少；直接處理母體，沒有統計推論的需求(e.g., 就不用管例如confidence level那些)。
+- 衝擊
+  - 組織決策與學術研究
+  - 分析方法與分析者: 處理看似無限量的資料
 
 
-Two distinctive approach
-- Statistical model
+資料分析的兩支 Two distinctive approach
+- Statistical/data model
   - 重點在解釋
-  - 基於理論(先建立模型)> 分析資料> 檢驗理論
-- Algorithm model 
-  - 重點在預測
+  - 模型基於理論 > 分析資料 > 檢驗理論
+  - 統計推論(樣本推母體數量特徵)以及用統計檢定檢驗模型的概化能力
+  - 特定模型的建立: e.g. dependent variables and independent variables to be analyzed by the general linear model
+- Datamining/Algorithmic model 
+  - 重點在預測的精確度
+  - 模型基於算法(例如 神經網路、決策樹)
   - 分析資料> 得到關係(模型)
-  - 又稱 Data Mining
-  - 例如 神經網路、決策樹
+  - 不重解釋與統計推論
+  
 
 Causal Inference 因果關係
 - 在不做實驗的情況下得到超越統計推論的「原因-後果 的論述」

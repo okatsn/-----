@@ -128,22 +128,27 @@ See [this](https://www.scribbr.com/methodology/reliability-vs-validity/) and ppt
 - 
 
 
-
-Dependence Techniques
+### Dependence and Interdependence 
+Dependence Techniques: 變量分成I.V. 與被解釋的/欲預測的 D.V.
 - MANOVA
   - 多個 dependent variables: Multiple (metric) = Multiple (nonmetric)
 - ANOVA
   - 單個 dependent variables: Single (metric) = Multiple (nonmetric)
 - Multiple Discriminant Analysis
+  - Single (nonmetric) =  multiple (metric)
   - 跟cluster analysis 有異曲同工之妙。
+- Multiple Regression analysis
+  - single (metric) = multiple (**any**)
 - 結構方程
   - 具有多個方程式；每個方程式(模型)都要被滿足。
   - 同時估計不同假說下的模型。
 
 
-Interdependence techniques
-- Factor analysis
-- Cluster analysis
+Interdependence techniques: 
+- 同時分析考慮所有變數(變量)，不區別I.V.與D.V.。
+- 範例：
+  - Factor analysis
+  - Cluster analysis
 
 ### Problems
 - 不能取代理論的建立
@@ -318,8 +323,173 @@ Non-correlated errors 誤差項的獨立性(interdependence of error terms)
 
 
 # Lecture 3
-## Questions
+## Question
+What is exploratory factor analysis
+- examine the interrelationship among a large number of variables
+- common underlying dimensions as factors
+- a summarization and data reduction technique
+- an interdependence techniques (see [L1](#dependence-and-interdependence))
+
+## Terms
+### 探索性與驗證性
+探索性(exploratory)：由資料告訴我們架構
+驗證性(confirmatory)：測試看看原先設想之架構(假說)是否符合現實(資料)
+
+### common & unique variance
+common variance (C.V.)
+- 與同一個factor 下的其他變數共享的某個變數的variance
+unique variance (U.V.)
+- specific variance
+- error variance
+
+
+測量誤差大，C.V.小，U.V.大
+
+### factor matrix of loadings
+- factor matrix of loadings has loadings of every variable on every factor extracted
+- example of factor matrix
+  |  |F1|F2|F3|
+  |--|--|--|--|
+  |X1|  |  |  |
+  |X2|  |  |  |
+  |X3|  |  |  |
+
+
+- cross loading (須避免): a variable has high loadings on several factors
+
+Identifying cross-loadings:
+- used squared loadings (上表**loading值的平方，即為variance**)
+- squared loadings 的比例(Ratio): 每橫列最大的兩個值相除
+- Ratio 1.0-1.5: problematic
+- Ratio 1.5-2.0: potential cross-loading, 可試著刪除該變數
+- Ratio >2     :      GOOD :thumbsup:
+
+### communalities
+Communality：每個factor各一個；整體也一個
+- factor solution 對各變數的變異量(variance)
+- sum of the squared loadings across all retained factors
+
+
+### surrogate; summated scale; factor scores
+surrogate (代理變數)
+- 👍 simple and easy to interpret
+- 👎 prone to error
+- 👎 無法表現所有面向
+
+summated scale
+- e.g. mean from high-loading vars on the factor
+- a compromise between surrogate and factor scores
+- 👍 easily replicated across studies
+- 👍 可表現多重面向
+- 👎 不一定垂直
+
+factor scores
+- 👍 best for complete data reduction
+- 👍 represents all vars. loadings on the factor
+- 👍 可表現多重面向
+- 👎 difficult to interpret
+- 👎 無法結合別的問卷/研究
+
+## Exploratory Factor analysis (EFA)
+### 結果：data summarization and data reduction
+data summarization:
+- describe the data in a much **smaller number of concepts** than original individual variables
+
+data reduction:
+- factor score or summated scale for each factor
 
 
 
-## Exploratory Factor analysis
+### 方法與設計
+Correlation matrix -> 相關係數高於特定數值(e.g. 0.7)為基準分群
+- 例如，味道、溫度、新鮮度相關性高，歸類為「食物品質」的因子之下。
+
+一般來說：
+- 基本上使用metric variables
+  - for nonmetric data: specialized methods exist for dummy variables
+- 每個因素至少5個變數
+- 觀測數量(observations)必須大於變數(variables)數量(廢話)
+- 至少5最好10 observations per variable
+- correlation 至少 0.3
+
+Multicollinearity 
+- Bartlett's test of sphericity: sig. < 0.05 則變數之間的關聯性足以進行探索式因素分析
+- Measure of sampling adequacy (MSA): KMO value > 0.5 for both overall test and each individual variable
+
+Extraction decisions
+- Principal components analysis
+  - using when data reduction is a primary concern
+  - extract both common & unique variance
+- Common factor analysis
+  - best for well-specified theoretical applications
+  - extract common variance; exclude unique variance
+  - to identify latent constructs (構念、抽象的概念) or dimensions
+### Seven stages
+
+Stage 1: Objective 目標
+- 探索性或驗證性? (CFA or EFA?)
+Stage 2: Designing
+- how the var measured
+- how many vars should be included
+Stage 3: Assumptions
+- correlation > 0.3的變數數量?
+Stage 4: Deriving factors & overall fit
+- number of factors
+Stage 5: Interpretation
+- rotation of factors
+Stage 6: validation
+- 資料拆成兩部分，尋求驗證式分析例如結構方程模型
+Stage 7: additional use of EFA results
+- 代理變數、summated scale、factor scores
+
+### R factor analysis?
+
+### Q factor analysis?
+
+### The number of factors?
+Stopping rules 
+- a priori criterion: 研究者自己知道有幾個因素
+- latent root criterion (Kaiser rule):
+  - latent root or eigenvalues $\geq 1$ are considered significant (每個factor 都有一個eigenvalue)
+  - most commonly used; applicable to **principal component analysis**
+  - less accurate with small number of vars.
+- percentage of variance 
+- scree test: 新增factor 數量也幾乎不改變 eigenvalue
+  - the amount of common variances: factors before inflection point
+
+Decision on the number of factors:
+- several stopping criteria
+- eigenvalue > 1.0
+- predetermined number of factors
+- percentage of variance > 60%
+- the amount of common variances: factors before inflection point
+- alternative solutions: e.g. one more or one less factor
+### rotation of factors/factor loadings
+目標是simple structure: 
+- each var. has a high loading on one factor only. (如果一變數(一題)和多因素都高相關，則垃圾題)
+- each factor has high loadings for only one subset of items
+
+
+rotation of factors
+- orthogonal rotation (90 $^\circ$; factors are independent)
+- oblique rotation (factors can be dependent to each other)
+- 旋轉後，從 factor loading 看變數與因素之相關性 (loading 越大越相關；距離越近越相關)
+
+loading is significant?
+- minimal level $\pm 0.3 - 0.4$
+- practically sig. $\geq\pm 0.5$
+- well-defined structure $\geq\pm 0.7$
+- sample size 越小，對loading 的要求就越高
+
+five steps
+- examine the [factor matrix of loadings](#factor-matrix-of-loadings)
+- identify significant loadings for each var (逐一查看所有變數各自對哪一個因素相關性最高)
+- assess [communalities](#communalities)
+- re-specify model if needed: e.g. no significant loadings; communality is too low; cross-loading
+- label factors
+
+Identifying cross loading
+- 
+### additional use of factor analysis
+
+### limitations

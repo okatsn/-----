@@ -33,14 +33,8 @@ Why are scales of measurement important for data analysis?
 - Each of the four scales (i.e., nominal, ordinal, interval, and ratio) provides a different type of information. ... Measurement refers to the assignment of numbers in a meaningful way, and understanding measurement scales is important to interpreting the numbers assigned to people, objects, and events.
 
 What basic issues need to be examined when using multivariate analysis?
-- Prediction of relations between variables is not an easy task. Each model has its assumptions. The most important assumptions underlying multivariate analysis are **normality, homoscedasticity, linearity**, and **the absence of correlated errors**.
-
-### 問題中的單詞解釋
-- 常態性(normality)：若是資料呈現常態分配 (normal distribution)，則誤差項也會呈現同樣的分配
-- 誤差項的獨立性(interdependence of error terms)：自變數的誤差項，相互之間應該是獨立的，也就是誤差項與誤差項之間没有相互關係
-- 誤差項的變異數相等(Homoscedasticity/equality of variance)：
-  - 自變數的誤差項除了需要呈現常態性分配外，其變異數也需要相等，變異數的不相等(heteroscedasticity)會導致自變數無法有效的估計應變數
-  - 殘差值的分配具有相同變異數(common variance)；亦即，每個殘差值所構成的次數分配都具有相同的變異數，這項假定稱作「等分散性」(homoscedasticity)
+- Prediction of relations between variables is not an easy task. Each model has its assumptions. The most important assumptions underlying multivariate analysis are **normality, homoscedasticity, linearity**, and **the absence of correlated errors**. 
+- See [Four important statistical assumptions](#four-important-statistical-assumptions)
 
 ## 多變量分析
 Big Data
@@ -190,7 +184,7 @@ What approaches would you use in examining each aspect?
   - univariate profiling (shape/distribution)
   - bivariate profiling 
     - relationships between variables
-    - group differences (根據某一變數分群，看個群體的統計值。例如 分男女看成績)
+    - group differences (根據某一變數分群，看各群體的統計值。例如 分男女看成績)
 - graphical examination: see shape using histogram; see relationships using scatterplot
 - identify and evaluate missing values
 - identify and deal with outliers
@@ -209,14 +203,123 @@ impact:
 - distort results
 
 
+#### Four steps:
+##### 1. the type and levels of missingness
+ignorable missing data:
+- expected and part of research design
+- the missing data process is random
+- censored data (還沒辦法被觀測到的，例如關於存活率的資料收集)
+
+not ignorable:
+- known process
+  - procedural (e.g., data management)
+- unknown process
+  - 受試者個人因素
+
+
+Three levels
+- item level (獨立變數的遺失e.g., 某人有幾題未回答導致)
+- construct level (e.g., 不知道或拒答)
+- personal level: 關於受試者意願或回答之能力 (e.g. 願意填答者都是績效較好的、填答不誠實)
+
+
+##### 2. extent of missing data (資料缺損的程度)
+基本問題：
+- 程度是否輕微到即使缺失值非隨機也不影響結果?
+
+levels of analysis (百分比)
+- by variable (從直行看缺值比例)
+- by case (從橫列看缺值比例)
+
+Guide:
+- 10% 以下
+- 處治手段(remedy)要確保sample size足夠
+- 通常缺 D.V. 就直接整筆刪掉
+- 若缺 I.V.，要確保有其他可替代的指標(反映原本變數的意圖，例如有4題都是評估同一項指標，則一題缺答可接受)
+- 分析刪或不刪對結果的影響。
+
+##### 3. Diagnose the randomness 
+缺失值的隨機性質
+- MAR: 缺值與 X 相依，但與 Y 無關；無bias。例如分析 X=企業規模 與 Y=績效 的關係，小企業缺值嚴重，還是可以進行有意義的分析(可剔除小企業)，但分析結果僅適用大企業。
+- MCAR: 完全隨機 :thumbsup:
+- NMAR (Not missing at random): 有bias。 e.g. 整份拒答 e.g. 績效差的公司缺值嚴重(不願意填答)。
+
+診斷：
+- t-test: 根據是否缺值分類，然後測試其他變數。例如，缺X1的一組，沒缺X1的一組，看其他變數(X234...)分布是否有差異。若有，MAR；若無，MCAR。
+- Little's MCAR test "是不是足夠接近MCAR"
+
+##### 4. Select the imputation method
+
+策略：
+- MCAR: 直接刪掉有缺值得資料 👌
+- 整筆(case)刪掉或刪掉某變數(variable): 依據理論考量以及憑經驗
+- 估計缺失值: imputation 
+
+補缺值的方法
+- case substitution
+- mean substitution: 用平均值取代；造成離散程度被低估
+- deck imputation: 用既有(hot)或外部(cold)和缺值類似的取代
+- regression imputation: 把缺值根據回歸線補上；強化原有關係、低估離散程度
+- model-based procedure: see [Handling “Missing Data” Like a Pro](https://towardsdatascience.com/handling-missing-data-like-a-pro-part-3-model-based-multiple-imputation-methods-bdfe85f93087)
+
+方法偏好
+- 10%以下：刪除全部缺值
+- 10-20%
+  - MCAR: hot deck case substitution & regression methods are preferred
+  - MAR: model-based methods are necessary
+- over 20%
+  - MCAR: regression methods are preferred
+  - MAR: model-based methods
+- In general, model-based methods are preferred for both MCAR and MAR, though for MCAR any imputation methods produce unbiased results.
+
+
 ### Outlier
+- a unique combination or extraordinary value
+- is the observation/response representative of the population? 這個觀測是真的假的
+
+一般來說(ppt p43)
+- univariate: 2.5 std
+- bivariate: 看關係是否特別(例如身高體輕)；scatterplot w/ confidence intervals
+- multivariate methods: D2/df measure should be very conservative (0.005 or 0.001)
+- D2: multivariate detection
+
+Dealing with outliers
+- 除非證明有誤，不然保留
+- 包含/不包含outlier分別產生結果
+
 #### impact
-
+- 真實的仍須納入
+- 扭曲結果；衝擊概化能力
+- 常用方法「自我設限」(e.g. 因為無法辨真假，一律剔除)："我的研究結果並不及於被排除的少數群體"
 ### dummy variable
+- non-metric I.V.
+- two or more levels that are coded 0 and 1
 
-### Four important statistical assumptions (請與前面整合)
+e.g. 
+| Category  | X1  | X2  |
+| --------- | --- | --- |
+| Physician | 1   | 0   |
+| Attorney  | 0   | 1   |
+| Professor | 0   | 0   |
+### Four important statistical assumptions
+Normality (常態性)
+- 若是資料呈現常態分配 (normal distribution)，則誤差項也會呈現同樣的分配
+- 統計推論(從樣本到母體)的基礎
+
+Homoscedasticity/equality of variance (誤差項的變異數相等)
+- 自變數的誤差項除了需要呈現常態性分配外，其變異數也需要相等，變異數的不相等(heteroscedasticity)會導致自變數無法有效的估計應變數
+> 殘差值的分配具有相同變異數(common variance)；亦即，每個殘差值所構成的次數分配都具有相同的變異數，這項假定稱作「等分散性」(homoscedasticity)
+
+Linearity
+- 例如單位自變數變化的應變數變化是固定的(即斜率為常數)
+
+Non-correlated errors 誤差項的獨立性(interdependence of error terms)
+- 自變數的誤差項，相互之間應該是獨立的，也就是誤差項與誤差項之間没有相互關係
+
+
+# Lecture 3
+## Questions
 
 
 
-
-
+## Exploratory Factor analysis

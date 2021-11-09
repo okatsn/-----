@@ -1,3 +1,4 @@
 Communality
 communalities
 communality
+intercorrelated

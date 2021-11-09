@@ -149,6 +149,7 @@ Interdependence techniques:
 - 範例：
   - Factor analysis
   - Cluster analysis
+    - can employ either metric or nonmetric, but not in mix.
 
 ### Problems
 - 不能取代理論的建立
@@ -493,3 +494,106 @@ Identifying cross loading
 ### additional use of factor analysis
 
 ### limitations
+
+
+# Lecture 4
+
+## Questions
+what is cluster analysis?
+- goal:
+- keywords: natural groups/ing
+
+three steps:
+- 選擇變數(根據目標、架構、背後的理論建構等等)
+- 決定方法、要分幾群(或是決定一組候選群數)(如果需要的話)
+- 根據分群結果進行描述(可profiling the cluster results)
+
+three basic questions?
+
+three cluster diagram?
+- maximize...
+- minimize...
+
+issues:
+- objective in 選擇分群結果 & 選擇分群變數
+- curse of dimensionality (could have impact $\geq 20$ vars.)
+
+outlier 
+- should be removed if 
+  - non-representative of the population
+  - small/insignificant segments
+- should be retained if under-sampling (抽樣不足)
+- can be identified as
+  - single/very small clusters
+  - large distances from all other obs.
+
+
+measure the distance
+- euclidean: most common
+- D2 (Mahalanobis dist.): when intercorrelated
+
+Data standardization
+- required
+- using Z scores
+
+multicollinearity: variables are intercorrelated, resulting in "implicit weighting"
+
+partitioning approaches:
+- hierarchical
+  - agglomerative (凝聚) methods: 根據 similarity measure 不斷地將物件(觀測)結合成塊
+    - single linkage: CON: 造成snakelike chain
+    - complete linkage: CON: impact by outlier
+    - averaged linkage: less affected by outlier
+    - centroid (質心) method: less affected by outlier
+    - ward's method: best when we expect cluster sizes are similar; easily distorted by outlier
+  - divisive (分裂) methods: 不斷地將團塊分散
+  - PRO: 簡單快速
+  - CON: re-assignment not allowed (一旦成塊，不能再分開)；受outlier衝擊；不適用超大樣本
+- nonhierarchical
+  - researcher specified or generated cluster seeds
+  - e.g. k-mean
+  - PRO: 較不受outlier衝擊、不同距離計算法影響、不適當的變數之引入的影響
+  - CON: knowledge of seed points 重要；難以證明解是最佳；通常產生圓形以及大小近似的團塊；假設的群數太多則計算效率低
+
+Stopping rules:
+- heterogeneity change abruptly? 
+- statistical measure of heterogeneity: pseudo T^2; CCC; pseudo F statistics Dunn index ratio
+
+
+# Lecture 5
+## Questions
+What is multiple regression analysis?
+- 關鍵字：線性組合、權重、**單一D.V.**
+
+How do R-squared justify use of multiple regression
+- 0-1
+- 越接近1代表擬合越好
+- 通常 multicollinearity會造成R2減少
+
+Impact of influential observation
+- R...
+- C...
+- S...
+
+Selecting Influential Observations
+
+
+# Lecture 6
+## Question
+Selecting estimation method (for model) (p22-23)
+- S
+  - 不管能否區別，丟進去就對了
+  - calculate significance of the overall model: Mahalanobis D2 and Rao's V
+- S
+  - ...時特別有用
+  - 順序有差
+  - ...要多
+
+Three tasks in assessing overall model fit: (p24)
+- calculate...
+- evaluate...
+- assess...
+
+> ⚠️ **Notice**
+> - 統計顯著不代表預測準確
+> - 不顯著仍有助於分類
